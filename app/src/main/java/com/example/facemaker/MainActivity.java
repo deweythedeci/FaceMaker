@@ -14,10 +14,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // Code for getInstance taken from https://stackoverflow.com/a/47241833
-    private static MainActivity instance;
-    private FaceController faceController;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -26,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Initializes Face Controller
         Face face = findViewById(R.id.faceSurfView);
-        faceController = new FaceController(face, this);
+        FaceController faceController = new FaceController(face, this);
 
         //Links Face Controller with controls
         Button randomizeButton = findViewById(R.id.randomizeButton);
@@ -45,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         Spinner hairStyleSpinner = findViewById(R.id.hairStyleSpinner);
         hairStyleSpinner.setOnItemSelectedListener(faceController);
 
-    }
-
-    public static MainActivity getInstance(){
-        return instance;
     }
 
 }
