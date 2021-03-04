@@ -6,10 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.os.Build;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.SurfaceView;
 import androidx.annotation.RequiresApi;
 import java.util.Random;
@@ -40,7 +38,7 @@ public class Face extends SurfaceView {
     private static final float chinHeight = 400.0f;
     private static final float chinWidth = 400.0f;
     private static final float[] eyePosition = {0.0f, -50.0f};
-    private static final float eyeSeperation = 250.0f;
+    private static final float eyeSeparation = 250.0f;
     private static final float eyeWidth = 75.0f;
     private static final float eyeHeight = 50.0f;
     private static final float pupilSize = 30.0f;
@@ -98,6 +96,7 @@ public class Face extends SurfaceView {
         irisPaint.setColor(model.eyeColor);
         hairPaint.setColor(model.hairColor);
 
+        //Draws face using helper functions
         drawHairBack(canvas);
         drawFaceShape(canvas);
         drawEyes(canvas);
@@ -145,11 +144,14 @@ public class Face extends SurfaceView {
 
     private void drawSpikyHair(Canvas canvas, int spikes, float spikeHeight){
 
+        //Determines the angle needed between each spike
         double increment = Math.toRadians(180) / spikes;
 
+        //Initiates path to draw hair
         Path p = new Path();
         p.moveTo(x + faceWidth, y + foreheadHeight);
 
+        //Goes across the arc of the head and creates a jigsaw pattern using some math
         for(double angle = 0; angle < Math.toRadians(180); angle += increment){
             p.lineTo(x + (float) ((1 + spikeHeight/faceWidth) * Math.cos(angle + increment/2) + 1) * faceWidth/2,
                     y - (float) ((1 + spikeHeight/foreheadHeight) * Math.sin(angle + increment/2) - 1) * foreheadHeight);
@@ -157,8 +159,8 @@ public class Face extends SurfaceView {
                     y - (float) (Math.sin(angle + increment) - 1) * foreheadHeight);
         }
 
+        //Closes and draws path
         p.close();
-
         canvas.drawPath(p, hairPaint);
 
     }
@@ -167,17 +169,27 @@ public class Face extends SurfaceView {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void drawFaceShape(Canvas canvas){
 
+        //Starts path to outline face
         Path p = new Path();
         p.moveTo(x, y + faceHeight - chinHeight);
+
+        //Draws left edge of face
         p.lineTo(x, y + foreheadHeight);
+
+        //Draws the curved top of the head
         p.arcTo(x, y, x + faceWidth, y + 2 * foreheadHeight,
                 0, -180, false);
+
+        //Draws right edge of the face
         p.lineTo(x + faceWidth, y + foreheadHeight);
+
+        //Draws chin
         p.lineTo(x + faceWidth, y + faceHeight - chinHeight);
         p.lineTo(x + faceWidth / 2 + chinWidth / 2, y + faceHeight);
         p.lineTo(x + faceWidth / 2 - chinWidth / 2, y + faceHeight);
-        p.close();
 
+        //Closes and draws path
+        p.close();
         canvas.drawPath(p, skinPaint);
     }
 
@@ -205,38 +217,38 @@ public class Face extends SurfaceView {
     private void drawEyes(Canvas canvas){
 
         //draws whites of eyes
-        canvas.drawOval(x + faceWidth/2 + eyePosition[0] - eyeSeperation - eyeWidth,
+        canvas.drawOval(x + faceWidth/2 + eyePosition[0] - eyeSeparation - eyeWidth,
                 y + faceHeight/2 + eyePosition[1] - eyeHeight,
-                x + faceWidth/2 + eyePosition[0] - eyeSeperation + eyeWidth,
+                x + faceWidth/2 + eyePosition[0] - eyeSeparation + eyeWidth,
                 y + faceHeight/2 + eyePosition[1] + eyeHeight,
                 eyeWhitePaint);
-        canvas.drawOval(x + faceWidth/2 + eyePosition[0] + eyeSeperation - eyeWidth,
+        canvas.drawOval(x + faceWidth/2 + eyePosition[0] + eyeSeparation - eyeWidth,
                 y + faceHeight/2 + eyePosition[1] - eyeHeight,
-                x + faceWidth/2 + eyePosition[0] + eyeSeperation + eyeWidth,
+                x + faceWidth/2 + eyePosition[0] + eyeSeparation + eyeWidth,
                 y + faceHeight/2 + eyePosition[1] + eyeHeight,
                 eyeWhitePaint);
 
         //draws irises
-        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] - eyeSeperation,
+        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] - eyeSeparation,
                 y + faceHeight/2 + eyePosition[1], eyeHeight, irisPaint);
-        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] + eyeSeperation,
+        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] + eyeSeparation,
                 y + faceHeight/2 + eyePosition[1], eyeHeight, irisPaint);
 
         //draws pupils
-        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] - eyeSeperation,
+        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] - eyeSeparation,
                 y + faceHeight/2 + eyePosition[1], pupilSize, pupilPaint);
-        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] + eyeSeperation,
+        canvas.drawCircle(x + faceWidth/2 + eyePosition[0] + eyeSeparation,
                 y + faceHeight/2 + eyePosition[1], pupilSize, pupilPaint);
 
         //draw outline of eyes
-        canvas.drawOval(x + faceWidth/2 + eyePosition[0] - eyeSeperation - eyeWidth,
+        canvas.drawOval(x + faceWidth/2 + eyePosition[0] - eyeSeparation - eyeWidth,
                         y + faceHeight/2 + eyePosition[1] - eyeHeight,
-                        x + faceWidth/2 + eyePosition[0] - eyeSeperation + eyeWidth,
+                        x + faceWidth/2 + eyePosition[0] - eyeSeparation + eyeWidth,
                         y + faceHeight/2 + eyePosition[1] + eyeHeight,
                         featuresPaint);
-        canvas.drawOval(x + faceWidth/2 + eyePosition[0] + eyeSeperation - eyeWidth,
+        canvas.drawOval(x + faceWidth/2 + eyePosition[0] + eyeSeparation - eyeWidth,
                         y + faceHeight/2 + eyePosition[1] - eyeHeight,
-                        x + faceWidth/2 + eyePosition[0] + eyeSeperation + eyeWidth,
+                        x + faceWidth/2 + eyePosition[0] + eyeSeparation + eyeWidth,
                         y + faceHeight/2 + eyePosition[1] + eyeHeight,
                         featuresPaint);
 

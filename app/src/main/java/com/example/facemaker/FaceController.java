@@ -45,14 +45,20 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
     public void resetControls(){
 
         RadioGroup colorRadioGroup = activity.findViewById(R.id.colorRadioGroup);
-        int[] RGB;
 
         SeekBar redSeekBar = activity.findViewById(R.id.redSeekBar);
         SeekBar blueSeekBar = activity.findViewById(R.id.blueSeekBar);
         SeekBar greenSeekBar = activity.findViewById(R.id.greenSeekBar);
+
+        int[] RGB;
+
+        //Finds the part of the face that is currently selected
         switch (colorRadioGroupIndex){
             case 0:
+                //Checks button in case it is on the wrong one
                 colorRadioGroup.check(R.id.hairRadioButton);
+
+                //Gets appropriate color and sets seek bars to the correct values
                 RGB = getRGB(model.hairColor);
                 redSeekBar.setProgress(RGB[0]);
                 greenSeekBar.setProgress(RGB[1]);
@@ -60,7 +66,10 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
                 break;
 
             case 1:
+                //Checks button in case it is on the wrong one
                 colorRadioGroup.check(R.id.skinRadioButton);
+
+                //Gets appropriate color and sets seek bars to the correct values
                 RGB = getRGB(model.skinColor);
                 redSeekBar.setProgress(RGB[0]);
                 greenSeekBar.setProgress(RGB[1]);
@@ -68,7 +77,10 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
                 break;
 
             case 2:
+                //Checks button in case it is on the wrong one
                 colorRadioGroup.check(R.id.eyesRadioButton);
+
+                //Gets appropriate color and sets seek bars to the correct values
                 RGB = getRGB(model.eyeColor);
                 redSeekBar.setProgress(RGB[0]);
                 greenSeekBar.setProgress(RGB[1]);
@@ -85,6 +97,7 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
     @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
+        //Gets the color of the currently selected part
         int RGB[] = new int[3];
         switch (colorRadioGroupIndex){
             case 0:
@@ -100,6 +113,7 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
                 break;
         }
 
+        //Updates the RGB value according to the progress bar
         if(seekBar == seekBar.findViewById(R.id.redSeekBar)){
             RGB[0] = progress;
         }
@@ -110,7 +124,7 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
             RGB[2] = progress;
         }
 
-
+        //Sends updated RGB value to the model
         switch (colorRadioGroupIndex){
             case 0:
                 model.hairColor = getHex(RGB);
@@ -138,7 +152,6 @@ public class FaceController implements SeekBar.OnSeekBarChangeListener, View.OnC
         RGB[2] = hex & 0xff;
         return RGB;
     }
-
     private int getHex(int[] RGB){
         return (0xff) << 24 | (RGB[0] & 0xff) << 16 | (RGB[1] & 0xff) << 8 | (RGB[2] & 0xff);
     }
