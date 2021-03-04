@@ -77,7 +77,7 @@ public class Face extends SurfaceView {
     }
 
     //Randomize face details
-    private void randomize(){
+    public void randomize(){
 
         model.skinColor = numGenerator.nextInt(16777216);
         model.skinColor += 0xFF000000;

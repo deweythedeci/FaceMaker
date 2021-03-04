@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">FaceMaker</string>
+
+    <string-array name="HairStyleOptions">
+        <item>Bowl Cut</item>
+        <item>Spiky Hair >:)</item>
+        <item>Long Hair</item>
+        <item>Bald</item>
+    </string-array>
+
 </resources>
