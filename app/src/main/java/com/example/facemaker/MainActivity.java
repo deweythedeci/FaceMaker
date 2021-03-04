@@ -10,5 +10,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Initializes Hair Style Spinner
+        String[] hairStyleOptions = new String[] {
+                "Bowl Cut", "Spiky >:)", "Long Hair", "Bald"
+        };
     }
 }
