@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FaceMaker</string>
+    <string name="app_name">FaceMaker_chongb24</string>
 
     <string-array name="HairStyleOptions">
         <item>Bowl Cut</item>
