@@ -1,4 +1,6 @@
-package com.example.facemaker;
+//@author Benjamin Chong
+
+package com.example.facemaker_chongb24;
 
 public class FaceModel {
 

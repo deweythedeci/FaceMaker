@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:background="#FFFFFFFF">
 
-        <com.example.facemaker.Face
+        <com.example.facemaker_chongb24.Face
             android:id="@+id/faceSurfView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

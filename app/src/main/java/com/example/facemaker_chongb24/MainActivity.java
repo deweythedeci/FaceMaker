@@ -1,16 +1,14 @@
-package com.example.facemaker;
+//@author Benjamin Chong
+
+package com.example.facemaker_chongb24;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.example.facemaker;
+package com.example.facemaker_chongb24;
 
 import org.junit.Test;
 
