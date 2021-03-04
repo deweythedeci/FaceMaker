@@ -13,12 +13,8 @@ import java.util.Random;
 
 public class Face extends SurfaceView {
 
-    //Details for drawing face
-    public int skinColor;
-    public int eyeColor;
-    public int hairColor;
-    //Options: 0 - bowl cut, 1 - spiky, 2 - long hair, 3 - bald
-    public int hairStyle;
+    //Contains details for drawing face
+    public FaceModel model = new FaceModel();
 
     //Random number generator
     private Random numGenerator = new Random();
@@ -55,10 +51,10 @@ public class Face extends SurfaceView {
 
     //Randomize face details
     private void randomize(){
-        this.skinColor = numGenerator.nextInt(16777216);
-        this.eyeColor = numGenerator.nextInt(16777216);
-        this.hairColor = numGenerator.nextInt(16777216);
-        this.hairStyle = numGenerator.nextInt(4);
+        this.model.skinColor = numGenerator.nextInt(16777216);
+        this.model.eyeColor = numGenerator.nextInt(16777216);
+        this.model.hairColor = numGenerator.nextInt(16777216);
+        this.model.hairStyle = numGenerator.nextInt(4);
     }
 
     @Override
@@ -66,9 +62,9 @@ public class Face extends SurfaceView {
     public void onDraw(Canvas canvas) {
 
         //Sets paints to the correct color
-        skinPaint.setColor(skinColor);
-        irisPaint.setColor(eyeColor);
-        hairPaint.setColor(hairColor);
+        skinPaint.setColor(model.skinColor);
+        irisPaint.setColor(model.eyeColor);
+        hairPaint.setColor(model.hairColor);
 
         //Gets the bounds of the Surface View
         setClipBounds(bounds);
@@ -84,7 +80,7 @@ public class Face extends SurfaceView {
 
     //Draws the hair that is behind your hair (as in long hair)
     private void drawHairBack(Canvas canvas){
-        switch(hairStyle) {
+        switch(model.hairStyle) {
             case 2:
 
         }
@@ -92,7 +88,7 @@ public class Face extends SurfaceView {
 
     //Draws the hair in front of your head
     private void drawHairFront(Canvas canvas){
-        switch(hairStyle) {
+        switch(model.hairStyle) {
             case 1:
 
                 break;

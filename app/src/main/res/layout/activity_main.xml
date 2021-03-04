@@ -18,7 +18,7 @@
             android:background="#FFFFFF" />
 
         <Spinner
-            android:id="@+id/hairstyleSpinner"
+            android:id="@+id/hairStyleSpinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
